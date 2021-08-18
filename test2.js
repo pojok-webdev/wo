@@ -31,7 +31,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 console.log('PIC',pic)
-                return x
+                return pic
             })
         })
         )
