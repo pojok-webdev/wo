@@ -27,13 +27,14 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                 console.log('PIC',pic)
             })
         })*/
-        res.send(x.map(row=>{
+        x.map(row=>{
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 console.log('PIC',pic)
-                return x
+         //       return x
+         res.send(x)
             })
-        })
+        }
         )
         //res.send(x)
     })
