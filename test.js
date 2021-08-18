@@ -15,34 +15,15 @@ var express = require('express'),
 });
 app.use(bodyParser.json({limit:'10mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
-app.post('/insertprospectnomandatory',(req,res,next)=>{
-    connection.doQuery(clientqueries.getUserId({sales_email:'puji@padi.net.id'}),user=>{
-        console.log("User got",user)
-        if(user.length===0){
-            res.send({'Error':'User doesnot exists'})
-        }else{
-            connection.doQuery(clientqueries.insertProspect(req.body,user[0]),result=>{
-                res.send(result)
-            })
-        }
-    })
+app.get('/hehe/:s',(req,res)=>{
+    console.log('Rq',req)
+    res.send({'result':'ok hehe'})
 })
-app.use(function (req, res, next) {
-    console.log('Req:', app.mountpath)
-    next()
-  })
-
-app.get('/getclientbyid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientById(req.param),result=>{
-        res.send(result)
-    })
-})
-app.get('/getclientbyname/:name',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientByName(req.params),result=>{
-        res.send(result)
-    })
+app.get('/hoho/:s/:x',(req,res)=>{
+    console.log('Rq',req)
+    res.send({'result':'ok hoho'})
 })
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
-});
+  });
 app.listen(process.env.PORT||appSetting.port)
