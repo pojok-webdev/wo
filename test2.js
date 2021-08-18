@@ -34,6 +34,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                 return pic
             },picerr=>{
                 console.log('Picerr',picerr)
+                return picerr
             })
         })
         )
