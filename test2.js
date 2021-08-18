@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    connection = require('./js/connection'),
+    connection = require('./js/connectionchained'),
     clientqueries = require('./js/clientqueries'),
     bodyParser = require('body-parser'),
     appconfig = require('./js/configs'),
@@ -15,25 +15,20 @@ var express = require('express'),
 });
 app.use(bodyParser.json({limit:'10mb',extended:true}))
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
-app.get('/hehe/:s',(req,res)=>{
-    console.log('Rq',req)
-    res.send({'result':'ok hehe'})
-})
-app.get('/hoho/:s/:x',(req,res)=>{
-    console.log('Rq',req)
-    res.send({'result':'ok hoho'})
-})
-mypromise = ()=>{
-    console.log('My Promise');
-    new Promise((resolve,err)=>{
-        for(var x=1;x<100;x++){
-            
-        }
-        resolve('a')
+app.get('/getpicbyclientid/:id',(req,res,next)=>{
+    console.log('Qyert',clientqueries.getClientById(req.params))
+    connection.doQuery(clientqueries.getClientById(req.params))
+    .then(x=>{
+        console.log(x)
+        x.forEach(row=>{
+            console.log('ID',row.id)
+            connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
+            .then(pic=>{
+                console.log('PIC',pic)
+            })
+        })
+        res.send(x)
     })
-}
-app.get('/promise',(req,res)=>{
-    mypromise()
 })
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});

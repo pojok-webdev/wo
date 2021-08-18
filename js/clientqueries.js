@@ -20,6 +20,7 @@ getPicByClientId = obj => {
     sql+= 'left outer join fbs b on b.client_id=a.id '
     sql+= 'left outer join fbpics c on c.nofb=b.nofb '
     sql+= 'where a.id = ' + obj.id + ' '
+    console.log(sql)
     return sql
 }
 module.exports = {

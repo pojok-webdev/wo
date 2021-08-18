@@ -40,8 +40,9 @@ app.get('/getclientbyid/:id',(req,res,next)=>{
 
 app.get('/getpicbyclientid/:id',(req,res,next)=>{
     connection.doQuery(clientqueries.getClientById(req.params),client=>{
+        
         connection.doQuery(clientqueries.getPicByClientId(req.params),pic=>{
-            res.send({'client':client,'pic':pic})
+            res.send({'result':{'client':client,'pic':pic}})
         })
     })
 })
