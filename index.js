@@ -37,6 +37,15 @@ app.get('/getclientbyid/:id',(req,res,next)=>{
         res.send(result)
     })
 })
+
+app.get('/getpicbyclientid/:id',(req,res,next)=>{
+    connection.doQuery(clientqueries.getClientById(req.param),client=>{
+        connection.doQuery(clientqueries.getPicByClientId(req.param),pic=>{
+            res.send({'client':client,'pic':pic})
+        })
+    })
+})
+
 app.get('/getclientbyname/:name',(req,res,next)=>{
     connection.doQuery(clientqueries.getClientByName(req.params),result=>{
         res.send(result)

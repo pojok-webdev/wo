@@ -15,9 +15,16 @@ getClientByName = param => {
     sql+= 'or alias like "%'+param.alias+'%"'
     return sql
 }
-
+getPicByClientId = obj => {
+    sql = 'select c.id,c.role,c.name,c.position from clients a '
+    sql+= 'left outer join fbs b on b.client_id=a.id '
+    sql+= 'left outer join fbpics c on c.nofb=b.nofb '
+    sql = 'where a.id = ' + obj.id + ' '
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
-    getUserId:getUserId
+    getUserId:getUserId,
+    getPicByClientId:getPicByClientId
 }
