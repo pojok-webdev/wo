@@ -33,14 +33,14 @@ app.use(function (req, res, next) {
   })
 
 app.get('/getclientbyid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientById(req.param),result=>{
+    connection.doQuery(clientqueries.getClientById(req.params),result=>{
         res.send(result)
     })
 })
 
 app.get('/getpicbyclientid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientById(req.param),client=>{
-        connection.doQuery(clientqueries.getPicByClientId(req.param),pic=>{
+    connection.doQuery(clientqueries.getClientById(req.params),client=>{
+        connection.doQuery(clientqueries.getPicByClientId(req.params),pic=>{
             res.send({'client':client,'pic':pic})
         })
     })
