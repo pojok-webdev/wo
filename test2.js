@@ -19,7 +19,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
     console.log('Qyert',clientqueries.getClientById(req.params))
     connection.doQuery(clientqueries.getClientById(req.params))
     .then(x=>{
-        console.log('X',x)
+        console.log('XXX',x)
         /*x.forEach(row=>{
             console.log('ID',row.id)
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
@@ -36,6 +36,8 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
         })
         )*/
         res.send(x)
+    },err=>{
+        console.log('Err',err)
     })
 })
 app.all('*', function(req, res) {
