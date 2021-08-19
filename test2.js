@@ -31,6 +31,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 //console.log('PIC',pic)
+                x.pic = pic
                 resolve (x)
             },picerr=>{
                 //console.log('Picerr',picerr)
