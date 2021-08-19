@@ -27,24 +27,22 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                 console.log('PIC',pic)
             })
         })*/
-        res.send(
-            new Promise((resolve,reject)=>x.map(row=>{
-                connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
-                .then(pic=>{
-                    //console.log('PIC',pic)
-                    resolve (pic)
-                },picerr=>{
-                    //console.log('Picerr',picerr)
-                    reject (picerr)
-                })            }))
-            .then(x=>{
-                console.log('PIC res',x)
-                return x
-            },y=>{
-                console.log('PIC err',y)
-                return y
-            })
-        )
+        new Promise((resolve,reject)=>x.map(row=>{
+            connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
+            .then(pic=>{
+                //console.log('PIC',pic)
+                resolve (pic)
+            },picerr=>{
+                //console.log('Picerr',picerr)
+                reject (picerr)
+            })            }))
+        .then(x=>{
+            console.log('PIC res',x)
+            res.send (x)
+        },y=>{
+            console.log('PIC err',y)
+            res.send (y)
+        })
         //res.send(x)
     },err=>{
         console.log('Err',err)
