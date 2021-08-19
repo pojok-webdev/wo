@@ -31,8 +31,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 //console.log('PIC',pic)
-                x.pic = pic
-                resolve (x)
+                resolve (pic)
             },picerr=>{
                 //console.log('Picerr',picerr)
                 reject (picerr)
@@ -40,7 +39,8 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
         }))
         .then(pic=>{
             console.log('PIC res',pic)
-            res.send (pic)
+            x.pic = pic
+            res.send (x)
         },errpic=>{
             console.log('PIC err',errpic)
             res.send (errpic)
