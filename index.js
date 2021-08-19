@@ -58,7 +58,7 @@ app.get('/getclientpicbyclientid/:id',(req,res,next)=>{
     connectionchained.doQuery(clientqueries.getClientById(req.params))
     .then(x=>{
         new Promise((resolve,reject)=>x.map(row=>{
-            connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
+            connectionchained.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 row.pic = pic
                 resolve (row)
