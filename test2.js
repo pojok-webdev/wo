@@ -39,7 +39,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
         console.log('Err',err)
     })
 })
-app.get('/getpicbyclientname/:id',(req,res)=>{
+app.get('/getpicbyclientname/:name',(req,res)=>{
     connection.doQuery(clientqueries.getClientByName(req.params))
     .then(x=>{
         new Promise((resolve,reject)=>x.map(row=>{
