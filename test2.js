@@ -31,17 +31,18 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
             connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
             .then(pic=>{
                 //console.log('PIC',pic)
-                resolve (pic)
+                resolve (x)
             },picerr=>{
                 //console.log('Picerr',picerr)
                 reject (picerr)
-            })            }))
-        .then(x=>{
-            console.log('PIC res',x)
-            res.send (x)
-        },y=>{
-            console.log('PIC err',y)
-            res.send (y)
+            })            
+        }))
+        .then(pic=>{
+            console.log('PIC res',pic)
+            res.send (pic)
+        },errpic=>{
+            console.log('PIC err',errpic)
+            res.send (errpic)
         })
         //res.send(x)
     },err=>{
