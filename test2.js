@@ -39,9 +39,9 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                 })
             }))
             .then(x=>{
-                resolve (x)
+                return x
             },y=>{
-                reject(y)
+                return y
             })
         )
         //res.send(x)
