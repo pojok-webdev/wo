@@ -1,5 +1,5 @@
 getClientById = param => {
-    sql = 'select id,name,alias from '
+    sql = 'select id,name,alias,"" pic from '
     sql+= ' clients '
     sql+= 'where id='+param.id
     return sql
@@ -10,7 +10,7 @@ getUserId = obj => {
     return sql
 }
 getClientByName = param => {
-    sql = 'select id,name,alias from ';
+    sql = 'select id,name,alias,"" pic from ';
     sql+= 'clients where name like "%'+param.name+'%" '
     sql+= 'or alias like "%'+param.alias+'%"'
     return sql
