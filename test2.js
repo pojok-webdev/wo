@@ -32,10 +32,10 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                 return (connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
                 .then(pic=>{
                     //console.log('PIC',pic)
-                    resolve (pic)
+                    return (pic)
                 },picerr=>{
                     //console.log('Picerr',picerr)
-                    reject (picerr)
+                    return (picerr)
                 })
                 )
             }))
