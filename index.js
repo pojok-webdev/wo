@@ -1,6 +1,7 @@
 var express = require('express'),
     app = express(),
     connection = require('./js/connection'),
+    connectionchained = require('./js/connectionchained'),
     clientqueries = require('./js/clientqueries'),
     bodyParser = require('body-parser'),
     appconfig = require('./js/configs'),
@@ -52,6 +53,31 @@ app.get('/getclientbyname/:name',(req,res,next)=>{
         res.send(result)
     })
 })
+app.get('/getclientpicbyclientid/:id',(req,res,next)=>{
+    console.log('Qyert',clientqueries.getClientById(req.params))
+    connectionchained.doQuery(clientqueries.getClientById(req.params))
+    .then(x=>{
+        new Promise((resolve,reject)=>x.map(row=>{
+            connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
+            .then(pic=>{
+                row.pic = pic
+                resolve (row)
+            },picerr=>{
+                reject (picerr)
+            })            
+        }))
+        .then(pic=>{
+            console.log('PIC res',pic)
+            res.send ({'result':pic})
+        },errpic=>{
+            console.log('PIC err',errpic)
+            res.send ({'result':errpic})
+        })
+    },err=>{
+        console.log('Err',err)
+    })
+})
+
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
 });

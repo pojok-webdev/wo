@@ -39,29 +39,6 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
         console.log('Err',err)
     })
 })
-app.get('/getpicbyclientname/:name',(req,res)=>{
-    connection.doQuery(clientqueries.getClientByName(req.params))
-    .then(x=>{
-        new Promise((resolve,reject)=>x.map(row=>{
-            connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
-            .then(pic=>{
-                row.pic = pic
-                resolve (row)
-            },picerr=>{
-                reject (picerr)
-            })            
-        }))
-        .then(pic=>{
-            console.log('PIC res',pic)
-            res.send (pic)
-        },errpic=>{
-            console.log('PIC err',errpic)
-            res.send (errpic)
-        })
-    },err=>{
-        console.log('Err',err)
-    })
-})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
   });
