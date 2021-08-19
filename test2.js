@@ -29,7 +29,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
         })*/
         res.send(
             new Promise((resolve,reject)=>x.map(row=>{
-                connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
+                return (connection.doQuery(clientqueries.getPicByClientId({id:row.id}))
                 .then(pic=>{
                     //console.log('PIC',pic)
                     resolve (pic)
@@ -37,6 +37,7 @@ app.get('/getpicbyclientid/:id',(req,res,next)=>{
                     //console.log('Picerr',picerr)
                     reject (picerr)
                 })
+                )
             }))
             .then(x=>{
                 console.log('PIC res',x)
