@@ -5,7 +5,6 @@ var express = require('express'),
     clientqueries = require('./js/clientqueries'),
     bodyParser = require('body-parser'),
     appconfig = require('./js/configs'),
-    checkparams = require('./js/checks'),
     bodyParser = require('body-parser'),
     appSetting = appconfig.appSetting();
     app.engine('html',require('ejs').renderFile)
@@ -32,21 +31,6 @@ app.use(function (req, res, next) {
     console.log('Req:', app.mountpath)
     next()
   })
-
-app.get('/getclientbyid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientById(req.params),result=>{
-        res.send(result)
-    })
-})
-
-app.get('/getpicbyclientid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientById(req.params),client=>{
-        
-        connection.doQuery(clientqueries.getPicByClientId(req.params),pic=>{
-            res.send({'result':{'client':client,'pic':pic}})
-        })
-    })
-})
 
 app.get('/getclientbyname/:name',(req,res,next)=>{
     connection.doQuery(clientqueries.getClientByName(req.params),result=>{
