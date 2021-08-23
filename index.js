@@ -39,7 +39,7 @@ app.get('/getclientbyname/:name',(req,res,next)=>{
 })
 app.get('/getclientpicbyclientid/:id',(req,res,next)=>{
     console.log('Qyert',clientqueries.getClientById(req.params))
-    connectionchained.doQuery(clientqueries.getClientById(req.params))
+    connectionchained.doQuery(clientqueries.getClientById({id:req.params,chain:'pic'}))
     .then(x=>{
         new Promise((resolve,reject)=>x.map(row=>{
             connectionchained.doQuery(clientqueries.getPicByClientId({id:row.id}))

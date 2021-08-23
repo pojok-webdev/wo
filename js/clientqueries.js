@@ -1,5 +1,5 @@
 getClientById = param => {
-    sql = 'select id,name,alias,"" pic from '
+    sql = 'select id,name,alias,"" '+param.chain+' from '
     sql+= ' clients '
     sql+= 'where id='+param.id
     return sql
