@@ -24,6 +24,16 @@ getPicByClientId = obj => {
     console.log(sql)
     return sql
 }
+getServiceByClientId = obj => {
+    sql = 'select c.email,c.role,c.name,c.position, ';
+    sql+= ' fb_id,name,bandwidth,upstr,dnstr,space,category '
+    sql+= 'from clients a '
+    sql+= 'left outer join fbs b on b.client_id=a.id '
+    sql+= 'left outer join fbservices c on c.fb_id=b.nofb '
+    sql+= 'where a.id = ' + obj.id + ' '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
