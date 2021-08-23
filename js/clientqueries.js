@@ -31,6 +31,7 @@ getServiceByClientId = obj => {
     sql+= 'left outer join fbs b on b.client_id=a.id '
     sql+= 'left outer join fbservices c on c.fb_id=b.nofb '
     sql+= 'where a.id = ' + obj.id + ' '
+    sql+= 'and c.status="1" '
     console.log(sql)
     return sql
 }
