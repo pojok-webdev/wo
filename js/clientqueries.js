@@ -25,7 +25,7 @@ getPicByClientId = obj => {
     return sql
 }
 getServiceByClientId = obj => {
-    sql = 'select c.email,c.role,c.name,c.position, ';
+    sql = 'select  ';
     sql+= ' fb_id,name,bandwidth,upstr,dnstr,space,category '
     sql+= 'from clients a '
     sql+= 'left outer join fbs b on b.client_id=a.id '
