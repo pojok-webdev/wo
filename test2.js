@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({limit:'10mb',extended:true}))
 })*/
 app.get('/getclientpicbyclientid/:id',(req,res,next)=>{
     console.log('Qyert',clientqueries.getClientById(req.params))
-    connectionchained.doQuery(clientqueries.getClientById({id:req.params,chain:'pic'}))
+    connectionchained.doQuery(clientqueries.getClientById({id:req.params.id,chain:'pic'}))
     .then(x=>{
         new Promise((resolve,reject)=>x.map(row=>{
             connectionchained.doQuery(clientqueries.getPicByClientId({id:row.id}))
@@ -67,7 +67,7 @@ app.get('/getclientpicbyclientid/:id',(req,res,next)=>{
 
 app.get('/getclientservicebyclientid/:id',(req,res,next)=>{
     console.log('Qyert',clientqueries.getClientById(req.params))
-    connectionchained.doQuery(clientqueries.getClientById({id:req.params,chain:'service'}))
+    connectionchained.doQuery(clientqueries.getClientById({id:req.params.id,chain:'service'}))
     .then(x=>{
         new Promise((resolve,reject)=>x.map(row=>{
             connectionchained.doQuery(clientqueries.getServiceByClientId({id:row.id}))
