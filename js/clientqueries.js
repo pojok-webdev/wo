@@ -38,5 +38,6 @@ module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
     getUserId:getUserId,
-    getPicByClientId:getPicByClientId
+    getPicByClientId:getPicByClientId,
+    getServiceByClientId:getServiceByClientId
 }
