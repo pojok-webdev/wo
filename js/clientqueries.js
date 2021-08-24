@@ -1,5 +1,3 @@
-const { sql } = require("./configs")
-
 getClientById = param => {
     sql = 'select id,name,alias,"" '+param.chain+' from '
     sql+= ' clients '
@@ -44,14 +42,14 @@ getMasterServices = _ => {
 }
 getMasterServiceByName = obj => {
     console.log('OBJ',obj)
-    sql = 'select id,category_id,product_id,name from pricelists2.products '
+    let sql = 'select id,category_id,product_id,name from pricelists2.products '
     sql+= 'where name like "%'+obj.name+'%" '
     console.log('SQL',sql)
     return sql
 }
 getMasterServiceByCategory = obj => {
     console.log('OBJ',obj)
-    sql = 'select id,category_id,product_id,name from pricelists2.products '
+    let sql = 'select id,category_id,product_id,name from pricelists2.products '
     sql+= 'where category_id="'+obj.category_id+'" '
     console.log('SQL',sql)
     return sql
