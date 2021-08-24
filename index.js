@@ -90,6 +90,16 @@ app.get('/getmasterservice',(req,res)=>{
         res.send({'result':services})
     })
 })
+app.get('/getmasterservicebyname',(req,res)=>{
+    connection.doQuery(clientqueries.getMasterServicesByName(),services=>{
+        res.send({'result':services})
+    })
+})
+app.get('/getmasterservicebycategory',(req,res)=>{
+    connection.doQuery(clientqueries.getMasterServicesByCategory(),services=>{
+        res.send({'result':services})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
 });

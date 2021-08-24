@@ -1,3 +1,5 @@
+const { sql } = require("./configs")
+
 getClientById = param => {
     sql = 'select id,name,alias,"" '+param.chain+' from '
     sql+= ' clients '
@@ -40,11 +42,25 @@ getMasterServices = _ => {
     console.log(sql)
     return sql
 }
+getMasterServiceByName = obj => {
+    sql = 'select id,category_id,product_id,name from pricelists2.products '
+    sql+= 'where name like "%'+obj.category_id+'%" '
+    console.log(sql)
+    return sql
+}
+getMasterServiceByCategory = obj => {
+    sql = 'select id,category_id,product_id,name from pricelists2.products '
+    sql+= 'where category_id="'+obj.category_id+'" '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
     getUserId:getUserId,
     getPicByClientId:getPicByClientId,
     getServiceByClientId:getServiceByClientId,
-    getMasterServices:getMasterServices
+    getMasterServices:getMasterServices,
+    getMasterServiceByName:getMasterServiceByName,
+    getMasterServiceByCategory:getMasterServiceByCategory
 }
