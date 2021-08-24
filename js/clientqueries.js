@@ -35,10 +35,16 @@ getServiceByClientId = obj => {
     console.log(sql)
     return sql
 }
+getMasterServices = _ => {
+    sql = 'select id,category_id,product_id,name from products    '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
     getUserId:getUserId,
     getPicByClientId:getPicByClientId,
-    getServiceByClientId:getServiceByClientId
+    getServiceByClientId:getServiceByClientId,
+    getMasterServices:getMasterServices
 }

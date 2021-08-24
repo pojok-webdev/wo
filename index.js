@@ -85,7 +85,11 @@ app.get('/getclientservicebyclientid/:id',(req,res,next)=>{
         console.log('Err',err)
     })
 })
-
+app.get('/getmasterservice',(req,res)=>{
+    connection.doQuery(clientqueries.getMasterServices(),services=>{
+        res.send({'result':services})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
 });
