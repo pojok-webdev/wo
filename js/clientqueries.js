@@ -36,7 +36,7 @@ getServiceByClientId = obj => {
     return sql
 }
 getMasterServices = _ => {
-    sql = 'select id,category_id,product_id,name from products    '
+    sql = 'select id,category_id,product_id,name from pricelists2.products    '
     console.log(sql)
     return sql
 }
