@@ -44,7 +44,7 @@ getMasterServices = _ => {
 }
 getMasterServiceByName = obj => {
     sql = 'select id,category_id,product_id,name from pricelists2.products '
-    sql+= 'where name like "%'+obj.category_id+'%" '
+    sql+= 'where name like "%'+obj.name+'%" '
     console.log(sql)
     return sql
 }

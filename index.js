@@ -90,12 +90,12 @@ app.get('/getmasterservice',(req,res)=>{
         res.send({'result':services})
     })
 })
-app.get('/getmasterservicebyname',(req,res)=>{
+app.get('/getmasterservicebyname/:name',(req,res)=>{
     connection.doQuery(clientqueries.getMasterServicesByName(),services=>{
         res.send({'result':services})
     })
 })
-app.get('/getmasterservicebycategory',(req,res)=>{
+app.get('/getmasterservicebycategory/:category_id',(req,res)=>{
     connection.doQuery(clientqueries.getMasterServicesByCategory(),services=>{
         res.send({'result':services})
     })
