@@ -135,6 +135,7 @@ app.get('/getclientpicservicebyclientid/:id',(req,res,next)=>{
 })
 app.get('/getmastermaterial', (req,res) => {
     connection.doQuery(clientqueries.getMasterMaterial(),material=>{
+        console.log('Material',material)
         res.send({'result':material})
     })
 })
