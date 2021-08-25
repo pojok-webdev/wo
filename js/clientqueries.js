@@ -54,6 +54,11 @@ getMasterServiceByCategory = obj => {
     console.log('SQL',sql)
     return sql
 }
+getMasterMaterial = _ => {
+    sql = ' select a.id,b.name,a.name,a.satuan,a.description from materials a left outer join materialtypes b on b.id=a.materialtype_id '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
@@ -62,5 +67,6 @@ module.exports = {
     getServiceByClientId:getServiceByClientId,
     getMasterServices:getMasterServices,
     getMasterServiceByName:getMasterServiceByName,
-    getMasterServiceByCategory:getMasterServiceByCategory
+    getMasterServiceByCategory:getMasterServiceByCategory,
+    getMasterMaterial:getMasterMaterial
 }

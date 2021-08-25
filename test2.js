@@ -133,6 +133,11 @@ app.get('/getclientpicservicebyclientid/:id',(req,res,next)=>{
         console.log('Err Get PICs',err)
     })
 })
+app.get(getmastermaterial = (req,res) => {
+    connection.doQuery(clientqueries.getMasterMaterial(),material=>{
+        res.send({'result':material})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
   });
