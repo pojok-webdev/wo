@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    connection = require('./js/connections'),
+    connection = require('./js/connection'),
     connectionchained = require('./js/connectionchained'),
     clientqueries = require('./js/clientqueries'),
     bodyParser = require('body-parser'),
