@@ -102,6 +102,12 @@ app.get('/getmasterservicebycategory/:category_id',(req,res)=>{
         res.send({'result':services})
     })
 })
+app.get('/getmastermaterial', (req,res) => {
+    connection.doQuery(clientqueries.getMasterMaterial(),material=>{
+        console.log('Material',material)
+        res.send({'result':material})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
 });
