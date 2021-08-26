@@ -139,6 +139,12 @@ app.get('/getmastermaterial', (req,res) => {
         res.send({'result':material})
     })
 })
+app.get('/getmasterdevice', (req,res) => {
+    connection.doQuery(clientqueries.getMasterDevice(),device=>{
+        console.log('Device',device)
+        res.send({'result':device})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
   });

@@ -55,7 +55,14 @@ getMasterServiceByCategory = obj => {
     return sql
 }
 getMasterMaterial = _ => {
-    sql = ' select a.id,b.name,a.name,a.satuan,a.description from materials a left outer join materialtypes b on b.id=a.materialtype_id '
+    sql = ' select a.id,b.name,a.name,a.satuan,a.description from materials a '
+    sql+= 'left outer join materialtypes b on b.id=a.materialtype_id '
+    console.log(sql)
+    return sql
+}
+getMasterDevice = _ => {
+    sql = ' select a.id,b.name,a.name,a.unit,a.brand,a.description from devices a '
+    sql+= 'left outer join devicecategories b on b.id=a.category_id '
     console.log(sql)
     return sql
 }
@@ -68,5 +75,6 @@ module.exports = {
     getMasterServices:getMasterServices,
     getMasterServiceByName:getMasterServiceByName,
     getMasterServiceByCategory:getMasterServiceByCategory,
-    getMasterMaterial:getMasterMaterial
+    getMasterMaterial:getMasterMaterial,
+    getMasterDevice:getMasterDevice
 }
