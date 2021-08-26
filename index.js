@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
   })
 
 app.get('/getclientbyid/:id',(req,res,next)=>{
-    connection.doQuery(clientqueries.getClientByName(req.params),result=>{
+    connection.doQuery(clientqueries.getClientById(req.params),result=>{
         res.send(result)
     })
 })

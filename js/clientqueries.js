@@ -16,7 +16,7 @@ getUserId = obj => {
     return sql
 }
 getClientByName = param => {
-    sql = 'select id,name,alias,"" pic from ';
+    sql = 'select id,name,alias from ';
     sql+= 'clients where name like "%'+param.name+'%" '
     sql+= 'or alias like "%'+param.alias+'%"'
     console.log(sql)
