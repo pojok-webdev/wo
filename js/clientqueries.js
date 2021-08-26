@@ -1,7 +1,13 @@
 getClientById = param => {
-    sql = 'select id,name,alias,"" '+param.chain+' from '
-    sql+= ' clients '
-    sql+= 'where id='+param.id
+    if(param.chain){
+        sql = 'select id,name,alias,"" '+param.chain+' from '
+        sql+= ' clients '
+        sql+= 'where id='+param.id
+    }else{
+        sql = 'select id,name,alias from '
+        sql+= ' clients '
+        sql+= 'where id='+param.id
+    }
     return sql
 }
 getUserId = obj => {
