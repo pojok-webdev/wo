@@ -32,6 +32,11 @@ app.use(function (req, res, next) {
     next()
   })
 
+app.get('/getclientbyid/:id',(req,res,next)=>{
+    connection.doQuery(clientqueries.getClientByName(req.params),result=>{
+        res.send(result)
+    })
+})
 app.get('/getclientbyname/:name',(req,res,next)=>{
     connection.doQuery(clientqueries.getClientByName(req.params),result=>{
         res.send(result)
