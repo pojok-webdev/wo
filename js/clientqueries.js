@@ -88,7 +88,7 @@ getMasterClients = param => {
     return sql
 }
 getMasterSites = obj => {
-    sql = 'select a.id,a.address from client_sites a '
+    sql = 'select a.id siteid,a.address from client_sites a '
     sql+= 'where client_id='+obj.client_id+' '
     console.log(sql)
     return sql
