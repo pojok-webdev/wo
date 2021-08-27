@@ -146,9 +146,18 @@ app.get('/getmasterdevice', (req,res) => {
     })
 })
 app.get('/getclientsites',(req,res)=>{
-    connection.doQuery(clientqueries.getMasterClientsites(),client=>{
+    connectionchained.doQuery(clientqueries.getMasterClients({chain:'site'}))
+    .then(client=>{
         console.log('Client',client)
-        res.send({'result':client})
+        new Promise((resolve,reject)=>clientqueries.getMastersites({client_id:client_id})
+        .then(site=>{
+            resolve(site)
+        },err=>{
+            reject(err)
+        })
+
+        )
+     //   res.send({'result':client})
     })
 })
 app.all('*', function(req, res) {

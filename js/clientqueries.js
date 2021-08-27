@@ -1,3 +1,4 @@
+
 getClientById = param => {
     if(param.chain){
         sql = 'select id,name,alias,"" '+param.chain+' from '
@@ -79,6 +80,18 @@ getMasterClientsites = _ => {
     console.log(sql)
     return sql
 }
+getMasterClients = param => {
+    sql = 'select a.id,a.name,"" '+param.chain+' from clients a '
+    sql+= 'where a.active="1" '
+    console.log(sql)
+    return sql
+}
+getMasterSites = obj => {
+    sql = 'select a.id,a.address from client_sites a '
+    sql+= 'where client_id='+obj.id+' '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
@@ -90,5 +103,7 @@ module.exports = {
     getMasterServiceByCategory:getMasterServiceByCategory,
     getMasterMaterial:getMasterMaterial,
     getMasterDevice:getMasterDevice,
-    getMasterClientsites:getMasterClientsites
+    getMasterClientsites:getMasterClientsites,
+    getMasterClients:getMasterClients,
+    getMasterSites:getMasterSites
 }
