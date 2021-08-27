@@ -153,7 +153,8 @@ app.get('/getclientsites/:id',(req,res)=>{
             console.log('cln',cln)
             connectionchained.doQuery(clientqueries.getMasterSites({client_id:req.params.id}))
             .then(site=>{
-                resolve(site)
+                cln.site = site
+                resolve(cln)
             },errsite=>{
                 reject(errsite)
             })
