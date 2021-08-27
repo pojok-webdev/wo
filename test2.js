@@ -150,6 +150,7 @@ app.get('/getclientsites/:id',(req,res)=>{
     .then(client=>{
         new Promise((resolve,reject)=>{
             client.map(cln=>{
+                console.log('cln',cln)
                 connectionchained.doQuery(clientqueries.getMasterSites({client_id:req.params.id}))
                 .then(site=>{
                     resolve(site)
