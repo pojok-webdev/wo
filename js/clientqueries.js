@@ -84,7 +84,7 @@ getMasterClientsites = _ => {
 getMasterClients = param => {
     sql = 'select a.id,a.name,"" '+param.chain+' from clients a '
     sql+= 'where a.active="1" '
-    console.log(sql)
+    console.log('MasterClients',sql)
     return sql
 }
 getMasterSites = obj => {
