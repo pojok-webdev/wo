@@ -148,17 +148,22 @@ app.get('/getmasterdevice', (req,res) => {
 app.get('/getclientsites',(req,res)=>{
     connectionchained.doQuery(clientqueries.getMasterClients({chain:'site'}))
     .then(client=>{
-        console.log('Client',client)
-        new Promise((resolve,reject)=>connectionchained.doQuery(clientqueries.getMasterSites({client_id:client.id})
-        .then(site=>{
-            resolve(site)
-        },err=>{
-            reject(err)
+        new Promise((resolve,reject)=>{
+            client.map(cln=>{
+                connectionchained.doQuery(clientqueries.getMasterClientsites({client_id:cln.id}))
+                .then(site=>{
+                    resolve(site)
+                },errsite=>{
+                    reject(errsite)
+                })
+            })
+    
         })
-
-        ))
-     //   res.send({'result':client})
-    })
+        .then(cl=>{
+            res.send({'result':cl})
+        },ercl=>{
+            res.send({'result':ercl})
+        })
 })
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
