@@ -149,7 +149,7 @@ app.get('/getclientsites',(req,res)=>{
     connectionchained.doQuery(clientqueries.getMasterClients({chain:'site'}))
     .then(client=>{
         console.log('Client',client)
-        new Promise((resolve,reject)=>clientqueries.getMastersites({client_id:client_id})
+        new Promise((resolve,reject)=>clientqueries.getMastersites({client_id:client.id})
         .then(site=>{
             resolve(site)
         },err=>{
