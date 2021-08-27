@@ -164,6 +164,7 @@ app.get('/getclientsites',(req,res)=>{
         },ercl=>{
             res.send({'result':ercl})
         })
+    })
 })
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
