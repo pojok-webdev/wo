@@ -9,6 +9,7 @@ getClientById = param => {
         sql+= ' clients '
         sql+= 'where id='+param.id
     }
+    console.log('GetClientById',sql)
     return sql
 }
 getUserId = obj => {
