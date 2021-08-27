@@ -119,6 +119,28 @@ app.get('/getmasterdevice', (req,res) => {
         res.send({'result':device})
     })
 })
+app.get('/getclientsites/:id',(req,res)=>{
+    connectionchained.doQuery(clientqueries.getClientById({id:req.params.id,chain:'site'}))
+    .then(client=>{
+        new Promise((resolve,reject)=>
+        client.map(cln=>{
+            console.log('cln',cln)
+            connectionchained.doQuery(clientqueries.getMasterSites({client_id:req.params.id}))
+            .then(site=>{
+                resolve(site)
+            },errsite=>{
+                reject(errsite)
+            })
+        })
+
+        )
+        .then(cl=>{
+            res.send({'result':cl})
+        },ercl=>{
+            res.send({'result':ercl})
+        })
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
 });
