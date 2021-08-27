@@ -145,8 +145,8 @@ app.get('/getmasterdevice', (req,res) => {
         res.send({'result':device})
     })
 })
-app.get('/getclientsites',(req,res)=>{
-    connectionchained.doQuery(clientqueries.getMasterClients({chain:'site'}))
+app.get('/getclientsites/:id',(req,res)=>{
+    connectionchained.doQuery(clientqueries.getClientById({id:req.params.id,chain:'site'}))
     .then(client=>{
         new Promise((resolve,reject)=>{
             client.map(cln=>{
