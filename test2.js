@@ -145,6 +145,12 @@ app.get('/getmasterdevice', (req,res) => {
         res.send({'result':device})
     })
 })
+app.get('/getclientsites',(req,res)=>{
+    connection.doQuery(clientqueries.getMasterClientsites(),client=>{
+        console.log('Client',client)
+        res.send({'result':client})
+    })
+})
 app.all('*', function(req, res) {
     res.send({"result":"invalidURL"});
   });

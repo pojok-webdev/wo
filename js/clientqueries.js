@@ -72,6 +72,13 @@ getMasterDevice = _ => {
     console.log(sql)
     return sql
 }
+getMasterClientsites = _ => {
+    sql = 'select a.id,a.name,b.id siteid,b.address '
+    sql+= 'from clients a left outer join client_sites b on b.client_id=a.id '
+    sql+= 'where a.active ="1" '
+    console.log(sql)
+    return sql
+}
 module.exports = {
     getClientById:getClientById,
     getClientByName:getClientByName,
@@ -82,5 +89,6 @@ module.exports = {
     getMasterServiceByName:getMasterServiceByName,
     getMasterServiceByCategory:getMasterServiceByCategory,
     getMasterMaterial:getMasterMaterial,
-    getMasterDevice:getMasterDevice
+    getMasterDevice:getMasterDevice,
+    getMasterClientsites:getMasterClientsites
 }
